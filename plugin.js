@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Callsign Enhancer Plugin
 // @namespace    http://tampermonkey.net/
-// @version      1.2.1
+// @version      1.2
 // @description  Changes GeoFS multiplayer labels to format: "acid | callsign"
 // @author       rico949
 // @match        https://*.geo-fs.com/*
@@ -86,7 +86,7 @@
             };
 
 
-            ui.chat.publish = function (e) {
+            ui.chat.publish = function(e) {
                 if (geofs.preferences.chat) {
                     const t = decodeURIComponent(e.msg);
                     ui.chat.$container = ui.chat.$container || $(".geofs-chat-messages");
@@ -94,22 +94,11 @@
                     let labelClass = "";
                     let formattedCallsign = "";
 
-                    const now = Math.floor(Date.now() / 1000);
-                    let delta = "";
-
-                    if (last_message_time[e.acid] !== undefined) {
-                        delta = now - last_message_time[e.acid];
-                    }
-                    last_message_time[e.acid] = now;
-
                     if (e.acid == geofs.userRecord.id) {
                         labelClass = "myself";
                         formattedCallsign = e.cs;
                     } else {
                         formattedCallsign = `${e.acid} | ${e.cs}`;
-                        if (delta !== "") {
-                            formattedCallsign += ` | ${delta}`;
-                        }
                     }
 
                     ui.chat.$container.prepend(
@@ -120,7 +109,7 @@
                         </div>`
                     );
 
-                    ui.chat.$container.find(".geofs-chat-message").each(function (i, msg) {
+                    ui.chat.$container.find(".geofs-chat-message").each(function(i, msg) {
                         $(msg).css("opacity", (ui.chat.maxNumberMessages - i) / ui.chat.maxNumberMessages);
                     }).eq(ui.chat.maxNumberMessages).remove();
                 }
