@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Callsign Enhancer Plugin
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Changes GeoFS multiplayer labels to format: "acid | callsign"
 // @author       rico949
 // @match        https://*.geo-fs.com/*
