@@ -27,6 +27,49 @@
 
             const originalAddCallsign = multiplayer.User.prototype.addCallsign;
 
+            multiplayer.labelOptions = {
+                default: {
+                    font: "15pt 'Trebuchet MS'",
+                    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                    horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                    eyeOffset: new Cesium.Cartesian3(0,10,0),
+                    fillColor: Cesium.Color.WHITE,
+                    outlineColor: Cesium.Color.fromCssColorString("#334ad6"),
+                    outlineWidth: 3
+                },
+                xavier: {
+                    font: "bold 12pt sans-serif",
+                    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                    horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                    eyeOffset: new Cesium.Cartesian3(0,6,0),
+                    fillColor: Cesium.Color.fromCssColorString("#ffc107"),
+                    outlineColor: Cesium.Color.WHITE,
+                    outlineWidth: 4
+                },
+                premium: {
+                    font: "bold 12pt sans-serif",
+                    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                    horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                    eyeOffset: new Cesium.Cartesian3(0,6,0),
+                    fillColor: Cesium.Color.fromCssColorString("#ffc107"),
+                    outlineColor: Cesium.Color.WHITE,
+                    outlineWidth: 4
+                },
+                traffic: {
+                    font: "bold 11pt sans-serif",
+                    style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+                    horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+                    verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
+                    eyeOffset: new Cesium.Cartesian3(0,6,0),
+                    fillColor: Cesium.Color.fromCssColorString("#79abbd"),
+                    outlineColor: Cesium.Color.WHITE,
+                    outlineWidth: 2
+                }
+            }
+            
             multiplayer.User.prototype.addCallsign = function(callsign, labelType) {
                 let acid = this.acid || 0;
                 let safeCallsign = geofs.api.makeLabelTextSafe(callsign || "");
@@ -72,6 +115,8 @@
                 }
             };
 
+            
+            
             console.log("Callsign Enhancer Plugin initialized successfully!");
         }
     }, 250);
